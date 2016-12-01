@@ -7,21 +7,28 @@ else
 	echo "Homebrew already installed"
 fi
 
-# brew update
+# Generate ssh key
+if [ ! -f ~/.ssh/id_rsa.pub ]; then
+	echo "Generate ssh key"
+	ssh-keygen -t rsa -b 4096 -C "daniel.kirgiopoulos@gmail.com"
+fi
 
+brew update
 
-# brew install git
-# brew install openssl
-# brew install imagemagick
-# brew install node
-# brew install postgres redis sqlite3
-# brew install sublime-text3
+brew install git
+brew install openssl
+brew install imagemagick
+brew install node
+brew install postgres redis sqlite3
+brew install python3
+
+pip3 install virtualenv
 
 # Install sublime plugins
 #TODO
 
 # Install git-prompt
-
+#TODO
 
 # Install extra bashrc
 cp .my-bashrc.sh ~/
@@ -31,4 +38,9 @@ if [ $(grep ".my-bashrc.sh" ~/.bash_profile | wc -l) -eq 0 ]; then
 else
 	echo "Custom bashrc already installed"
 fi
+
+# Setup git
+git config --global user.name "Daniel Winther"
+git config --global user.email "daniel.kirgiopoulos@gmail.com"
+git config --global credential.helper osxkeychain
 
